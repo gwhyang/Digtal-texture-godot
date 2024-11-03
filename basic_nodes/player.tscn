@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://243y4jgtxhg8"]
+
+[ext_resource type="Script" path="res://basic_nodes/player.gd" id="1_li5u3"]
+[ext_resource type="Texture2D" uid="uid://j5ikx8wgqpin" path="res://art/svg/gear-1119298.svg" id="2_2pht3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xw41t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mps2o"]
+size = Vector2(47, 46)
+
+[node name="player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_li5u3")
+FOLLOW_SPEED = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(28, 11)
+scale = Vector2(0.222292, 0.222292)
+texture = ExtResource("2_2pht3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xw41t")
+
+[node name="pickbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickbox"]
+scale = Vector2(1.8, 1.8)
+shape = SubResource("RectangleShape2D_mps2o")
+
+[connection signal="input_event" from="pickbox" to="." method="_on_area_2d_input_event"]

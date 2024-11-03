@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvrrbw8pbbhxm"]
+
+[ext_resource type="Script" path="res://basic_nodes/draw_line.gd" id="1_ei8y0"]
+
+[node name="draw_line" type="Line2D"]
+points = PackedVector2Array(1, -13)
+script = ExtResource("1_ei8y0")

@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca2jmohrutc8o"]
+
+[ext_resource type="PackedScene" uid="uid://243y4jgtxhg8" path="res://basic_nodes/player.tscn" id="1_45h2j"]
+[ext_resource type="PackedScene" uid="uid://chxiqu4op8sau" path="res://basic_nodes/brush.tscn" id="2_5vg1v"]
+[ext_resource type="PackedScene" uid="uid://dvrrbw8pbbhxm" path="res://basic_nodes/draw_line.tscn" id="3_6ybs8"]
+
+[sub_resource type="Curve" id="Curve_cuqud"]
+_data = [Vector2(0.0290698, 0), 0.0, 0.0, 0, 0, Vector2(0.418605, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_83rfs"]
+offsets = PackedFloat32Array(0, 0.133333, 0.373333, 0.993333)
+colors = PackedColorArray(0.592056, 0.380285, 0.436131, 0.384314, 0.439466, 0.315891, 0.351086, 1, 0.151276, 0.151276, 0.151276, 1, 0.154876, 0.154876, 0.154876, 1)
+
+[node name="pic_0" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_45h2j")]
+
+[node name="brush" parent="player" instance=ExtResource("2_5vg1v")]
+position = Vector2(300, 0)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="draw_line" parent="Node" node_paths=PackedStringArray("anchor") instance=ExtResource("3_6ybs8")]
+points = PackedVector2Array()
+width = 6.0
+width_curve = SubResource("Curve_cuqud")
+default_color = Color(0.273873, 0.273873, 0.273873, 1)
+gradient = SubResource("Gradient_83rfs")
+anchor = NodePath("../../player/brush")
+point_count = 1000

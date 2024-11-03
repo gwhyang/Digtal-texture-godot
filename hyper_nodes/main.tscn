@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8k4ixg72fu4s"]
+
+[ext_resource type="PackedScene" uid="uid://243y4jgtxhg8" path="res://basic_nodes/player.tscn" id="1_dtyig"]
+[ext_resource type="PackedScene" uid="uid://dvrrbw8pbbhxm" path="res://basic_nodes/draw_line.tscn" id="2_4j35c"]
+[ext_resource type="PackedScene" uid="uid://chxiqu4op8sau" path="res://basic_nodes/brush.tscn" id="2_lpnnc"]
+[ext_resource type="PackedScene" uid="uid://ca2jmohrutc8o" path="res://hyper_nodes/pic_0.tscn" id="4_alagv"]
+[ext_resource type="PackedScene" uid="uid://8smnkkd2dyqs" path="res://hyper_nodes/pic1.tscn" id="5_wdvdi"]
+[ext_resource type="PackedScene" uid="uid://bujsvwpte5cup" path="res://hyper_nodes/pic_2.tscn" id="6_q6noq"]
+[ext_resource type="PackedScene" uid="uid://clq1oaxtc1152" path="res://hyper_nodes/pic_3.tscn" id="7_haeh7"]
+[ext_resource type="Script" path="res://basic_nodes/label.gd" id="8_2opbc"]
+[ext_resource type="Script" path="res://hyper_nodes/camera_2d.gd" id="9_kbwvn"]
+
+[sub_resource type="Curve" id="Curve_odgsb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.00581396, 0), 0.0, 0.0, 0, 0, Vector2(0.575581, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_i0wvo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.482558, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_byk5m"]
+offsets = PackedFloat32Array(0, 0.36, 0.706667)
+colors = PackedColorArray(0.592157, 0.847059, 0.584314, 1, 0.815686, 0.32549, 0.364706, 1, 0.4, 0.619608, 0.811765, 1)
+
+[node name="main" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_dtyig")]
+position = Vector2(2642, 1133)
+FOLLOW_SPEED = 1.0
+ANGEL_SPEED = 2.1
+
+[node name="player2" parent="player" instance=ExtResource("1_dtyig")]
+position = Vector2(33, -242)
+ANGEL_SPEED = -1.7
+
+[node name="brush2" parent="player/player2" instance=ExtResource("2_lpnnc")]
+position = Vector2(-2, -275)
+
+[node name="pic_0" parent="." instance=ExtResource("4_alagv")]
+position = Vector2(1680, 759)
+
+[node name="Node2D" parent="." instance=ExtResource("5_wdvdi")]
+position = Vector2(1750, 1537)
+
+[node name="pic2" parent="." instance=ExtResource("6_q6noq")]
+position = Vector2(3393, 1650)
+
+[node name="pic_3" parent="." instance=ExtResource("7_haeh7")]
+texture_filter = 1
+position = Vector2(3387, 801)
+
+[node name="fps_displayer" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2440.0
+offset_top = 1691.0
+offset_right = 2509.0
+offset_bottom = 1720.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.89, 6.89)
+text = "FPS = fps"
+script = ExtResource("8_2opbc")
+
+[node name="camera_anchor" type="Node2D" parent="."]
+script = ExtResource("9_kbwvn")
+FOLLOW_SPEED = 10.0
+
+[node name="Camera2D" type="Camera2D" parent="camera_anchor"]
+
+[node name="brush" parent="." instance=ExtResource("2_lpnnc")]
+
+[node name="drawers" type="Node" parent="."]
+
+[node name="draw_line4" parent="drawers" node_paths=PackedStringArray("anchor") instance=ExtResource("2_4j35c")]
+points = PackedVector2Array()
+width_curve = SubResource("Curve_odgsb")
+default_color = Color(0.55043, 0.27932, 0.193782, 1)
+anchor = NodePath("../../brush")
+point_count = 1000
+
+[node name="draw_line" parent="drawers" node_paths=PackedStringArray("anchor") instance=ExtResource("2_4j35c")]
+width = 5.0
+width_curve = SubResource("Curve_i0wvo")
+default_color = Color(0.75838, 0.677574, 0.806065, 1)
+gradient = SubResource("Gradient_byk5m")
+anchor = NodePath("../../player/player2/brush2")
+point_count = 4000
