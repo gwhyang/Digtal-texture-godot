@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3lqwg10id2rt"]
+
+[ext_resource type="Script" path="res://hyper_nodes/experimental.gd" id="1_ghob2"]
+[ext_resource type="PackedScene" uid="uid://bwjjh16xrm8dr" path="res://basic_nodes/camera_anchor.tscn" id="2_vl8sk"]
+
+[node name="experimental" type="Node2D"]
+script = ExtResource("1_ghob2")
+
+[node name="line1" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0)
+default_color = Color(1, 0.427451, 1, 1)
+
+[node name="camera_anchor" parent="." instance=ExtResource("2_vl8sk")]
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="camera_anchor"]

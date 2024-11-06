@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cllq3wft5prwy"]
+
+[ext_resource type="Script" path="res://Public/tools/sound_manger.gd" id="1_s1h86"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_s1h86")
+
+[node name="SFX" type="Node" parent="."]

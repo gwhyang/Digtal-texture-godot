@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcmbmouiwmabb"]
+
+[ext_resource type="Script" path="res://Public/tools/drag_manager.gd" id="1_8oads"]
+
+[node name="Drag_Manager" type="Node2D"]
+script = ExtResource("1_8oads")
+FOLLOW_SPEED = 20.0
